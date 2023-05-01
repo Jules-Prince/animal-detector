@@ -25,7 +25,7 @@ Dans notre code, nous avons utilisé les librairies python suivantes :
 - os pour l'interaction avec le système d'exploitation ;
 - librosa pour le traitement des signaux audio ;
 - tensorflow pour la construction et l'entraînement du modèle ;
-- matplotlib et seaborn pour la visualisation.
+- matplotlib et seaborn pour la visualisation des données.
 
 Cela nous a permis de tester l'efficacité du réseau de neuronnes lors de nos différentes modifactions visant à réduire au maximum l'impacte mémoire/batterie sur la carte.
 
@@ -39,20 +39,49 @@ Après avoir préparé les données, le modèle CNN est construit avec TensorFlo
 
 Le modèle CNN est construit avec TensorFlow en utilisant des couches denses pour effectuer la classification des sons de chiens et de chats. Le modèle comprend des couches de convolution pour extraire des caractéristiques à partir des données audio en entrée. Ensuite, ces caractéristiques sont fournies à des couches denses pour effectuer la classification.
 
-Plus précisément, notre modèle comprend 3 couches de convolution avec des filtres de tailles 3x3 et une fonction d'activation de type ReLU. Ces couches sont suivies chacune d'une couche de pooling de taille 2x2 pour réduire la dimension de l'entrée. Ensuite, les sorties de la dernière couche de pooling sont aplatie et fournies à une couche dense de 64 neurones avec une fonction d'activation de type ReLU. Enfin, la couche de sortie contient 2 neurones avec une fonction d'activation de type softmax pour effectuer la classification entre les deux classes (chien/chat).
+Plus précisément, Ce modèle est un réseau de neurones prend en entrée des séquences de 100 points unidimensionnels et utilise une couche de convolution pour extraire les caractéristiques importantes de la séquence. Il réduit la dimensionnalité des données avec une couche de pooling et prédit la classe de la séquence avec une couche de sortie binaire grace à la fonction sigmoid.
 
 Le modèle a été compilé avec l'optimiseur "Adam" et une fonction de coût de type "categorical_crossentropy". Les données d'entraînement sont ajustées au modèle avec une taille de batch de 32 et pour un total de 50 époques. La validation croisée est utilisée pour évaluer la performance du modèle, en utilisant 20% des données d'entraînement pour la validation.
 
-Les résultats ont montré que le modèle était capable de classifier avec précision les sons de chiens et de chats, avec une précision moyenne de 95% sur les données de test. Cependant, l'empreinte mémoire du modèle était encore trop grande pour être utilisée efficacement sur la carte Nucleo-64 STM32L476, ce qui a nécessité plusieurs optimisations pour améliorer sa performance.
+Les résultats ont montré que le modèle était capable de classifier avec précision les sons de chiens et de chats, avec une précision moyenne de 88% sur les données de test. Cependant, l'empreinte mémoire du modèle était encore trop grande pour être utilisée efficacement sur la carte Nucleo-64 STM32L476, ce qui a nécessité plusieurs optimisations pour améliorer sa performance.
 
 ## Analyse des resultats
 ### Performance
 
+notre modèle nous amène à une performance de 88% sur les données de test.
+
+![performance](/img/performance.png)  
+
+La matrice de confusion nous donné un résultat tres satisfaisant.
+
+![Matrice de Confusion](/img/matrice.png)  
+
 ### Impact sur la mémoire
+
+Le programme sur la carte occupe l'espace suivant 
+
+![sizeMemory](/img/sizeMemory.png) 
+
+RAM : 40896 octets
+
+ROM : 42944 octets
 
 ### Latence
 
+Nous avons mesuré une lattence de 27ms
+
 ### Consomation d'énergie et analyse de la durée de vie de la batterie
+Nous allons maintenant mesuré la consommation en mode actif de la carte :
+
+Consommation d’énergie en mode actif : 14,1 mW
+
+La fréquence de récuperations de données avec T = 2,56s F = 0,39Hz
+
+Consommation d'énergie moyenne par inférence = (14,1 mW * T) / (T + 2,56 s) = 0,202 mW
+
+Autonomie avec mode veille = Énergie de la batterie / Consommation d'énergie moyenne par inférence = 316,8 mWh / 0,202 mW = 1564,36 heures
+
+Autonomie sans mode veille = Énergie de la batterie / Consommation d'énergie en mode actif = 316,8 mWh / 14,1 mW = 22,47 heures
 
 
 ## Conclusion et évolutions

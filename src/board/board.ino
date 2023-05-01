@@ -17,7 +17,7 @@ static number_t outputs[MODEL_OUTPUT_SAMPLES];
 static volatile boolean ready_for_inference = false; // Set to true when sample_i reaches the end of the inputs array
 
 // Nucleo-L476RG I2C3 on A5/A4
-extern const stm32l4_i2c_pins_t g_Wire1Pins = { GPIO_PIN_PC0_I2C3_SCL, GPIO_PIN_PC1_I2C3_SDA };
+extern const stm32l4_i2c_pins_t g_Wire1Pins = { 0x0420, 0x0421 };
 extern const unsigned int g_Wire1Instance = I2C_INSTANCE_I2C3;
 extern const unsigned int g_Wire1Mode = I2C_MODE_RX_DMA;
 static stm32l4_i2c_t _Wire1;
