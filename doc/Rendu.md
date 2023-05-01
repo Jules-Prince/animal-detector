@@ -1,4 +1,4 @@
-# <p align="center">Porjet de reconnaisance de sons</p>
+# Projet de reconnaisance de sons
  
 ## Membres de l'équipe
 
