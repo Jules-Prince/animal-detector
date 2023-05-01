@@ -50,17 +50,17 @@ Les résultats ont montré que le modèle était capable de classifier avec pré
 
 notre modèle nous amène à une performance de 88% sur les données de test.
 
-![performance](/img/performance.png)  
+![performance](img/performance.png)  
 
 La matrice de confusion nous donné un résultat tres satisfaisant.
 
-![Matrice de Confusion](/img/matrice.png)  
+![Matrice de Confusion](img/matrice.png)  
 
 ### Impact sur la mémoire
 
 Le programme sur la carte occupe l'espace suivant 
 
-![sizeMemory](/img/sizeMemory.png) 
+![sizeMemory](img/sizeMemory.png) 
 
 RAM : 40896 octets
 
