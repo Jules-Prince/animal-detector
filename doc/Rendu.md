@@ -10,7 +10,7 @@
 ### Contexte
 
 Le sujet de notre projet était de créer un modèle de classification de sons de chiens et de chats à partir d'enregistrements audio pour ensuite le mettre sur une carte Nucleo-64 STM32L476 et donc avoir de l'IA embarquée. Pour ce faire nous avons premièrement dû nous charger de trouver un dataset avec assez de données pour pouvoir entrainer efficacement notre réseau de neuronnes. Nous avons donc utilisé la base de données 'Audio Cats and Dogs' trouvée sur le site Kaggle (https://www.kaggle.com/datasets/mmoreaux/audio-cats-and-dogs) que nous avons complétée avec d'autres enregistrements pour garder un nombre équivalent d'enregistrements pour chaque classes.
-Ainsi, notre dataset final comportait, 2 classes (chien/chat) avec XXX enregistrements par classes d'apprentissage et XXX enregistrements par classes de test (total de XXX enregistrements dont XXX d'apprentissage et XXX de test).
+Ainsi, notre dataset final comportait, 2 classes (chien/chat) avec 210 enregistrements par classes d'apprentissage et 124 enregistrements par classes de test.
 
 ### Objectifs 
 
